@@ -8,11 +8,21 @@
     </scroll-view>
     <!-- 右侧滚动视图区域 -->
     <scroll-view class="right" scroll-y style="height: {{wh}}px;">
+      <!-- 循环创建二级分类 -->
       <block wx:for="{{secondCate}}" wx:key="index">
         <van-row>
           <van-col span="24" style="text-align: center">
-            <text class="cate_title">/ {{item.cat_name}} /</text>
+            <text class="cate_title" space="ensp">/  {{item.cat_name}}  /</text>
           </van-col>
+        </van-row>
+        <!-- 三级分类 -->
+        <van-row>
+          <block wx:for="{{item.children}}" wx:key="index">
+           <van-col span="8" class="cell" @tap="goGoodsList({{item.cat_id}})">
+             <image src="{{item.cat_icon}}" class="thumbImg" />
+             <view class="thumbTitle">{{item.cat_name}}</view>
+             </van-col> 
+          </block>
         </van-row>
       </block>
     </scroll-view>
@@ -28,6 +38,7 @@ export default class Cates extends wepy.page {
 <style lang="less">
 .cate-container {
   display: flex;
+  justify-content: space-around;
 }
 .left {
   width: 85px;
@@ -37,7 +48,17 @@ export default class Cates extends wepy.page {
     font-size: 26rpx;
     font-weight: blod;
     display: inline-block;
-    margin: 70rpx 0;
+    margin: 30rpx 0;
+  }
+  .cell {
+    text-align: center;
+    .thumbImg {
+      width: 120rpx;
+      height: 120rpx
+    }
+    .thumbTitle {
+      font-size: 24rpx;
+    }
   }
 }
 </style>
