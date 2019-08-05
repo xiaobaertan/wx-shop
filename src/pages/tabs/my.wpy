@@ -1,0 +1,9 @@
+<template>
+  <view>我的页</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class My extends wepy.page {}
+</script>
+<style lang="less">
+</style>

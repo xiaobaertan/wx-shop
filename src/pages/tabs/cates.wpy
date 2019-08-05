@@ -1,0 +1,43 @@
+<template>
+  <view class="cate-container">
+    <!-- 左侧的滚动视图区域 -->
+    <scroll-view class="left" scroll-y style="height: {{wh}}px;">
+      <van-badge-group active="{{ active }}" bind:change="onChange">
+        <van-badge wx:for="{{cateList}}" wx:key="index" title="{{item.cat_name}}" />
+      </van-badge-group>
+    </scroll-view>
+    <!-- 右侧滚动视图区域 -->
+    <scroll-view class="right" scroll-y style="height: {{wh}}px;">
+      <block wx:for="{{secondCate}}" wx:key="index">
+        <van-row>
+          <van-col span="24" style="text-align: center">
+            <text class="cate_title">/ {{item.cat_name}} /</text>
+          </van-col>
+        </van-row>
+      </block>
+    </scroll-view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import mix from '@/mixins/tabs/cates.js'
+export default class Cates extends wepy.page {
+  mixins = [mix]
+}
+</script>
+<style lang="less">
+.cate-container {
+  display: flex;
+}
+.left {
+  width: 85px;
+}
+.right {
+  .cate_title {
+    font-size: 26rpx;
+    font-weight: blod;
+    display: inline-block;
+    margin: 70rpx 0;
+  }
+}
+</style>
