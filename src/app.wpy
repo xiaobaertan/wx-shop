@@ -75,7 +75,9 @@ export default class extends wepy.app {
       // 图标
       'van-icon': './thirds/vant/icon/index',
       // 标签
-      'van-tag': './thirds/vant/tag/index'
+      'van-tag': './thirds/vant/tag/index',
+      // 商品卡片组件
+      'van-card': './thirds/vant/card/index'
     }
   }
 
