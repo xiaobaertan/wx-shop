@@ -29,12 +29,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "分类页面",
 					"pathName": "pages/tabs/cates",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索功能的开发",
+					"pathName": "pages/tabs/search",
 					"scene": null
 				}
 			]

@@ -4,7 +4,11 @@
 <script>
 import wepy from 'wepy'
 export default class Main extends wepy.page {
-    
+    data = {}
+    onLoad(options) {
+       console.log(options);
+       
+    }
 }
 </script>
 <style lang="less">
