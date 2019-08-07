@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
@@ -39,10 +39,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "搜索功能的开发",
-					"pathName": "pages/tabs/search",
-					"query": "",
+					"id": 1,
+					"name": "商品详情页",
+					"pathName": "pages/goods_detail/main",
+					"query": "goods_id=701",
 					"scene": null
 				},
 				{
