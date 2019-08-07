@@ -20,7 +20,7 @@ export default class extends wepy.app {
     window: {
       backgroundTextStyle: 'dark',
       navigationBarBackgroundColor: '#d81d06',
-      navigationBarTitleText: '黑马优购',
+      navigationBarTitleText: '黑微购',
       navigationBarTextStyle: 'white'
     },
     tabBar: {
@@ -82,12 +82,53 @@ export default class extends wepy.app {
       'van-tab': './thirds/vant/tab/index',
       'van-tabs': './thirds/vant/tabs/index',
       // HTML 转换插件
-      'wxparse': './thirds/wxparse/wxparse'
+      wxparse: './thirds/wxparse/wxparse',
+      // 商品导航
+      'van-goods-action': './thirds/vant/goods-action/index',
+      'van-goods-action-icon': './thirds/vant/goods-action-icon/index',
+      'van-goods-action-button': './thirds/vant/goods-action-button/index'
     }
   }
 
+  // 专门存储全局共享的数据
+  // 只需要通过 this.$parent.globalData 就可以拿到这个全局共享的数据对象
   globalData = {
-    userInfo: null
+    // 全局的购物车列表
+    cart: []
+  }
+
+  // 把商品添加到购物车列表中
+  addGoodsToCart({
+    goods_id: id,
+    goods_name: name,
+    goods_price: price,
+    goods_small_logo: pic
+  }) {
+    if (
+      !this.globalData.cart.some(i => {
+        if (i.id === id) {
+          i.count++
+          this.save()
+          wepy.setStorageSync('cart', this.globalData.cart)
+          return true
+        }
+      })
+    ) {
+      const info = {
+        id,
+        name,
+        price,
+        pic,
+        count: 1,
+        isChecked: true
+      }
+      this.globalData.cart.push(info)
+      this.save()
+    }
+  }
+  // 将购物车中的商品信息存储到本地
+  save() {
+    wepy.setStorageSync('cart', this.globalData.cart)
   }
 
   constructor() {
@@ -129,6 +170,7 @@ export default class extends wepy.app {
 
   onLaunch() {
     console.log('小程序启动啦')
+    this.globalData.cart = wepy.getStorageSync('cart') || []
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="goods_detail_container">
     <!-- 商品轮播图区域 -->
     <swiper indicator-dots autoplay>
       <block wx:for="{{goodsInfo.pics}}" wx:key="index">
@@ -35,10 +35,10 @@
         </view>
       </view>
       <!-- 收货地址区域 -->
-      <view class="box3">
+      <view class="box3" @tap="chooseAddress">
         <view>
           <text>送至</text>
-          <text>请选择收货地址</text>
+          <text>{{addressStr}}</text>
         </view>
         <van-icon name="arrow"></van-icon>
       </view>
@@ -46,7 +46,7 @@
     <!-- 商品详情区域 -->
     <van-tabs active="{{ active }}" bind:change="onChange">
       <van-tab title="图文详情">
-         <wxparse data="{{goodsInfo.goods_introduce}}"></wxparse>
+        <wxparse data="{{goodsInfo.goods_introduce}}"></wxparse>
       </van-tab>
       <van-tab title="规格参数" class="tab2">
         <block wx:for="{{goodsInfo.attrs}}" wx:key="index">
@@ -59,6 +59,13 @@
         </block>
       </van-tab>
     </van-tabs>
+    <!-- 商品导航区域 -->
+    <van-goods-action>
+      <van-goods-action-icon icon="chat-o" text="客服" open-type="contact" />
+      <van-goods-action-icon icon="cart-o" text="购物车" url="/pages/tabs/cart" link-type="switchTab" />
+      <van-goods-action-button text="加入购物车" type="warning" bind:click="addToCart" />
+      <van-goods-action-button text="立即购买" bind:click="onClickButton" />
+    </van-goods-action>
   </view>
 </template>
 <script>
@@ -139,15 +146,21 @@ swiper {
 }
 
 .tab2 {
-   font-size: 24rpx;
-   .van-row {
-      border-top: 1rpx solid #eee;
-      .van-col {
-         padding: 25rpx 0 25rpx 10rpx;
-         &:nth-child(1) {
-            border-right: 1rpx solid #eee;
-         }
+  font-size: 24rpx;
+  .van-row {
+    border-top: 1rpx solid #eee;
+    .van-col {
+      padding: 25rpx 0 25rpx 10rpx;
+      &:nth-child(1) {
+        border-right: 1rpx solid #eee;
       }
-   }
+    }
+  }
+}
+.van-tabs {
+  z-index: 0;
+}
+.goods_detail_container {
+  padding-bottom: 50rpx!important;
 }
 </style>
