@@ -77,7 +77,12 @@ export default class extends wepy.app {
       // 标签
       'van-tag': './thirds/vant/tag/index',
       // 商品卡片组件
-      'van-card': './thirds/vant/card/index'
+      'van-card': './thirds/vant/card/index',
+      // tab标签页
+      'van-tab': './thirds/vant/tab/index',
+      'van-tabs': './thirds/vant/tabs/index',
+      // HTML 转换插件
+      'wxparse': './thirds/wxparse/wxparse'
     }
   }
 

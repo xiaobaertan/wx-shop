@@ -11,6 +11,18 @@ export default class extends wepy.mixin {
     this.getGoodsInfo()    
   }
 
+  methods = {
+    // 点击预览图片
+    preview(current) {
+      wepy.previewImage({
+        // 所有看到的图片
+        urls: this.goodsInfo.pics.map(item => item.pics_big),
+        // 当前默认看到的图片
+        current: current
+      })
+    }
+  }
+
   // 获取商品详情数据
   async getGoodsInfo(){
       const { data: res } = await wepy.get('/goods/detail', {
