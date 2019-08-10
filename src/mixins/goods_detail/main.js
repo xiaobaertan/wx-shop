@@ -33,7 +33,6 @@ export default class extends wepy.mixin {
         wepy.baseToast('获取收货地址失败!')
       }
       this.$apply()
- 
     },
     // 点击商品 添加购物车
     addToCart() {
@@ -52,6 +51,10 @@ export default class extends wepy.mixin {
       if (this.addressInfo === null) return '请选择收货地址'
       const { provinceName, cityName, countyName, detailInfo } = this.addressInfo
       return `${provinceName}${cityName}${countyName}${detailInfo}`
+    },
+    // 所有已经勾选的商品的数量
+    total() {
+      return this.$parent.globalData.total
     }
   }
 
