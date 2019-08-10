@@ -16,7 +16,8 @@ export default class extends wepy.app {
       'pages/tabs/my',
       'pages/goods_detail/main',
       'pages/goods_list',
-      'pages/order'
+      'pages/order',
+      'pages/orderList'
     ],
     window: {
       backgroundTextStyle: 'dark',
@@ -95,7 +96,11 @@ export default class extends wepy.app {
       // 滑动单元格组件
       'van-swipe-cell': './thirds/vant/swipe-cell/index',
       // 提交订单
-      'van-submit-bar': './thirds/vant/submit-bar/index'
+      'van-submit-bar': './thirds/vant/submit-bar/index',
+      // 按钮组件
+      'van-button': './thirds/vant/button/index',
+      // pannel面板
+      'van-panel': './thirds/vant/panel/index'
     }
   }
 
@@ -174,7 +179,6 @@ export default class extends wepy.app {
         text: count + ''
       })
       .catch(err => err)
-    console.log(count)
 
     // 设置 tabBar 的徽章失败!
     if (res.errMsg !== 'setTabBarBadge:ok') {
@@ -194,6 +198,10 @@ export default class extends wepy.app {
         wepy.showLoading({
           title: '数据加载中...'
         })
+        p.header = {
+          Authorization: wepy.getStorageSync('token')
+        }
+
         // 必须返回OBJECT参数对象，否则无法发送请求到服务端
         return p
       },
